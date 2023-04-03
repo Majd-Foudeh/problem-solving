@@ -174,3 +174,24 @@ queue.push(5);
 console.log(reversequeue());
 // ---------------------------------end of solution of q2-------------------------------------
 
+
+
+// Implement a Queue using 2 stacks s1 and s2
+// ----------------------------------------solution of Q3-----------------------------------------------------------
+class queue2s{
+    constructor(){
+        this.stackin=[];
+        this.stackout=[];
+    }
+    enqueue(x){
+        this.stackin.push(x);
+    }
+    dequeue(){
+        if (this.stackout.length===0) {
+            this.stackout.push(this.stackin.pop())
+        }
+        return this.stackout.pop();
+    }
+
+}
+// --------------------------------------------------end of Q3 Solution--------------------------------------------------
