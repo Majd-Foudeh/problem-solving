@@ -217,3 +217,130 @@ console.log(m.peek())
 console.log(m.peek2())
 
 // --------------------------------------------------end of Q3 Solution--------------------------------------------------
+// q1 linkedlist 
+ //Create a function that takes a LinkedList and deletes the middle node in it and returns it
+
+
+ class Node {
+    constructor(value) {
+      this.value = value;
+      this.next = null;
+      this.prev = null;
+    }
+  }
+  
+  class LinkedList {
+    constructor() {
+      this.head = null;
+      this.tail = null;
+      this.size=0;
+    }
+    insertAtEnd(value) {
+      const node = new Node(value);
+      if (!this.head) {
+        this.head = node;
+        this.prev = null;
+      } else {
+        this.tail.next = node;
+        node.prev = this.tail;
+      }
+      this.tail = node;
+      this.size++;
+    }
+  
+    insertAtBeginning(value) {
+      const node = new Node(value);
+      if (!this.head) {
+        this.head = node;
+        this.tail = node;
+        this.prev = null;
+      } else {
+        node.next = this.head;
+        this.head = node;
+        node.prev=null;
+      }
+      this.size++;
+      return value;
+    }
+  
+    insertAfter(nodeValue, value) {
+      let currentNode = this.head;
+      while (currentNode) {
+        if (currentNode.value === nodeValue) {
+          const node = new Node(value);
+          node.next = currentNode.next;
+          currentNode.next = node;
+          if (currentNode === this.tail) {
+            this.tail = node;
+          }
+          
+        }
+        currentNode = currentNode.next;
+      }
+      this.size++;
+      return value;
+    }
+    delete() {
+  
+      let s=0;
+      if (this.size%2=== 0) {
+      s=this.size/2;
+      }
+      else{
+        s=(this.size+1)/2;
+      }
+  
+  
+  
+  
+      let currentNode = this.head;
+      let value
+      if (currentNode === this.tail) {
+        this.tail =currentNode ;
+        value =this.tail.value;
+        return value;
+      }
+      while (currentNode) {
+        if (currentNode.value === s-1) {
+          value=currentNode.next.value;
+          currentNode.next=currentNode.next.next;
+          currentNode.next.prev=currentNode;
+  this.size--;
+          return value;
+        }
+        currentNode=currentNode.next;
+      }
+    }
+  
+    reverseli(){
+  
+      let firstnodee = this.head;
+    let lastNode = this.tail;
+    let fnvalue = firstnodee.value;
+    let lnvalue = lastNode.value;
+    // let nextfn = firstnodee.next;
+    // let prevfn = lastNode.prev;
+    for(let i=0; i<this.size/2; i++) {
+      firstnodee.value=lnvalue;
+      lastNode.value=fnvalue;
+      firstnodee=firstnodee.next;
+      lastNode=lastNode.prev;
+      fnvalue=firstnodee.value;
+      lnvalue=lastNode.value;
+    }
+    }
+  
+  
+  }
+  
+  const linkedList = new LinkedList();
+  linkedList.insertAtEnd(1);
+  linkedList.insertAtEnd(2);
+  linkedList.insertAtEnd(3);
+  linkedList.insertAtEnd(4);
+  linkedList.insertAtEnd(5);
+  linkedList.insertAtEnd(6);
+  // console.log(linkedList);
+  // console.log(linkedList.delete());
+  // //console.log(linkedList.delete());
+  // console.log(linkedList);
