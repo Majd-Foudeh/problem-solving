@@ -188,10 +188,32 @@ class queue2s{
     }
     dequeue(){
         if (this.stackout.length===0) {
-            this.stackout.push(this.stackin.pop())
+            while (this.stackin
+                .length > 0) {
+                this.stackout.push(this.stackin.pop());
+              }
         }
         return this.stackout.pop();
     }
+    peek(){
+        return this.stackin
+    }
+    peek2(){
+        return this.stackout
+    }
 
 }
+let m =new queue2s();
+m.enqueue(1);
+m.enqueue(2);
+m.enqueue(3);
+m.enqueue(4);
+
+console.log(m.peek())
+m.dequeue();
+m.dequeue();
+m.dequeue();
+console.log(m.peek())
+console.log(m.peek2())
+
 // --------------------------------------------------end of Q3 Solution--------------------------------------------------
